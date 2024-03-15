@@ -7,17 +7,19 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
 @Data
 @Entity
 @Table(name = "DEBIT_CREDIT_TRANSACTION")
-public class DebitCreditTransacction {
+public class DebitCreditTransaction {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO,generator = "dbcrSeqGenerator")
 	@Column(name = "TRANSACTION_ID")
+	@SequenceGenerator(name = "dbcrSeqGenerator", sequenceName = "DBCR_SEQ", allocationSize = 1)
 	private int transactionId;
 
 	@Column(name = "AMOUNT")

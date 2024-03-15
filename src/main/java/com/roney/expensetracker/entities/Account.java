@@ -5,6 +5,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -14,8 +15,9 @@ import lombok.Data;
 public class Account {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO,generator = "accSeqGenerator")
 	@Column(name = "ACCOUNT_ID")
+	@SequenceGenerator(name = "accSeqGenerator", sequenceName = "ACCOUNT_SEQ", allocationSize = 1)
 	private int accountId;
 	
 	@Column(name = "NAME")
@@ -24,8 +26,8 @@ public class Account {
 	@Column(name = "BALANCE")
 	private float balance;
 	
-	@Column(name = "IMG")
-	private String img;
+//	@Column(name = "IMG")
+//	private String img;
 	
 	@Column(name = "USER_ID")
 	private int userId;

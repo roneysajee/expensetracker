@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -16,8 +17,9 @@ import lombok.Data;
 public class Transaction {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO,generator = "transSeqGenerator")
 	@Column(name = "TRANSACTION_ID")
+	@SequenceGenerator(name = "transSeqGenerator", sequenceName = "TRANSACTION_SEQ", allocationSize = 1)
 	private int transactionId;
 	
 	@Column(name = "AMOUNT")
